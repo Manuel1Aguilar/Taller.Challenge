@@ -6,10 +6,11 @@ using Moq;
 using Microsoft.Extensions.Logging;
 using challenge.Core.Models;
 
+namespace challenge.Tests.Services;
 public class UserServiceTests
 {
     private readonly Mock<IUserRepository> _userRepositoryMock;
-    private readonly IUserService _userService;
+    private readonly UserService _userService;
 
     public UserServiceTests()
     {

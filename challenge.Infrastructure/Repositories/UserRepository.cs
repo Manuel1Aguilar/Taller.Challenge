@@ -5,15 +5,10 @@ using Microsoft.Extensions.Logging;
 
 namespace challenge.Infrastructure.Repositories;
 
-public class UserRepository : IUserRepository
+public class UserRepository(UserContext context, ILogger<UserRepository> logger) : IUserRepository
 {
-    private readonly UserContext _context;
-    private readonly ILogger<UserRepository> _logger;
-    public UserRepository(UserContext context, ILogger<UserRepository> logger)
-    {
-        _context = context;
-        _logger = logger;
-    }
+    private readonly UserContext _context = context;
+    private readonly ILogger<UserRepository> _logger = logger;
 
     public async Task<User?> GetUserAsync(string username)
     {

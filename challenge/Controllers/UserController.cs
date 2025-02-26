@@ -6,16 +6,10 @@ namespace challenge.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UserController : ControllerBase
+public class UserController(ILogger<UserController> logger, IUserService userService) : ControllerBase
 {
-    private readonly ILogger<UserController> _logger;
-    private readonly IUserService _userService;
-
-    public UserController(ILogger<UserController> logger, IUserService userService)
-    {
-        _logger = logger;
-        _userService = userService;
-    }
+    private readonly ILogger<UserController> _logger = logger;
+    private readonly IUserService _userService = userService;
 
     [HttpGet(Name = "GetByUsername")]
     public async Task<ActionResult<UserDto>> GetByUsername(string username)
